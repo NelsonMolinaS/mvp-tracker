@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { FormattedMessage } from 'react-intl';
+import dayjs from 'dayjs';
 
 import { MvpCard } from '@/components/MvpCard';
 import { useMvpsContext } from '@/contexts/MvpsContext';
@@ -8,6 +9,7 @@ import { MvpCardSkeleton } from '@/components/Skeletons/MvpCardSkeleton';
 import { ModalEditMvp } from '@/modals';
 
 import { sortBy } from '@/utils/sort';
+import { getMvpRespawnTime } from '@/utils';
 
 import { Container, Section, SectionTitle, MvpsContainer } from './styles';
 
@@ -37,6 +39,16 @@ export function Main() {
     ? allMvpsFilteredAndSorted.reverse()
     : allMvpsFilteredAndSorted;
 
+  const sortedActiveMvps = [...activeMvps].sort((a, b) => {
+    const respawnA = getMvpRespawnTime(a);
+    const respawnB = getMvpRespawnTime(b);
+    if (!a.deathTime || !respawnA) return 1;
+    if (!b.deathTime || !respawnB) return -1;
+    const timeA = dayjs(a.deathTime).add(respawnA, 'ms').valueOf();
+    const timeB = dayjs(b.deathTime).add(respawnB, 'ms').valueOf();
+    return timeA - timeB;
+  });
+
   return (
     <>
       <Container>
@@ -47,7 +59,7 @@ export function Main() {
             </SectionTitle>
 
             <MvpsContainer>
-              {activeMvps.map((mvp: IMvp) => (
+              {sortedActiveMvps.map((mvp: IMvp) => (
                 <MvpCard key={`${mvp.id}-${mvp.deathMap}`} mvp={mvp} />
               ))}
             </MvpsContainer>
