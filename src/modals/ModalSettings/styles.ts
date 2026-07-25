@@ -17,10 +17,8 @@ export const Modal = styled.div`
 
   background-color: var(--modal_bg);
 
-  @media (max-width: ${1000 / 16}em) {
-    overflow-y: auto;
-    max-height: 85vh;
-  }
+  overflow-y: auto;
+  max-height: 90vh;
 `;
 
 export const Title = styled.span`
