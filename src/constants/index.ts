@@ -1,6 +1,6 @@
 import { LOCALES } from '../locales';
 
-export const DEFAULT_THEME = 'light';
+export const DEFAULT_THEME = 'dark';
 
 export const RESPAWN_TIMER_SOON_THRESHOLD_MS = 1000 * 60 * 10; // 10 minutes
 export const DEFAULT_LANG = LOCALES.ENGLISH;
