@@ -18,11 +18,16 @@ export async function loadMvpsFromFirebase(server: string): Promise<IMvp[]> {
 
     const finalData = Object.values(data)
       .map((mvp: any) => {
-        const found = originalServerData.find(
-          (m) =>
-            String(m.id) === String(mvp.id) ||
-            (m.spawn && m.spawn.some((s) => s.mapname === mvp.deathMap))
+        // First try to find by ID (exact match)
+        let found = originalServerData.find(
+          (m) => String(m.id) === String(mvp.id)
         );
+        // Only fall back to mapname if no ID match found
+        if (!found) {
+          found = originalServerData.find(
+            (m) => m.spawn && m.spawn.some((s) => s.mapname === mvp.deathMap)
+          );
+        }
         if (!found) return null;
         return {
           ...found,
