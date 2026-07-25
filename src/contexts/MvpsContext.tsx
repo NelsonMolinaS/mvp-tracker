@@ -3,6 +3,7 @@ import {
   useContext,
   useState,
   useEffect,
+  useRef,
   ReactNode,
   useCallback,
 } from 'react';
@@ -42,14 +43,15 @@ export function MvpProvider({ children }: MvpProviderProps) {
   const [activeMvps, setActiveMvps] = useState<IMvp[]>([]);
   const [allMvps, setAllMvps] = useState<IMvp[]>([]);
   // Track if we are the ones writing to avoid echo loops
-  const [isSaving, setIsSaving] = useState(false);
+  // Must be a ref (not state) so the Firebase callback reads the current value
+  const isSavingRef = useRef(false);
 
   // Subscribe to Firebase real-time updates
   useEffect(() => {
     setIsLoading(true);
 
     const unsubscribe = subscribeToActiveMvps(server, async (rawMvps) => {
-      if (isSaving) return; // Skip echo from our own writes
+      if (isSavingRef.current) return; // Skip echo from our own writes
 
       try {
         const originalServerData = await getServerData(server);
@@ -161,10 +163,10 @@ export function MvpProvider({ children }: MvpProviderProps) {
     if (isLoading) return;
 
     const sync = async () => {
-      setIsSaving(true);
+      isSavingRef.current = true;
       await saveActiveMvpsToFirebase(activeMvps, server);
       // Small delay so the Firebase listener doesn't echo back
-      setTimeout(() => setIsSaving(false), 1000);
+      setTimeout(() => { isSavingRef.current = false; }, 1500);
     };
 
     sync();
