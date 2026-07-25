@@ -23,7 +23,6 @@ export const Modal = styled.div`
 
 export const Title = styled.span`
   color: var(--modal_name);
-  margin-top: -4rem;
 
   font-size: 2.4rem;
   font-weight: 600;
