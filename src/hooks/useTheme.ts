@@ -3,19 +3,12 @@ import { usePersistedState } from './usePersistedState';
 import { DEFAULT_THEME, LOCAL_STORAGE_THEME_KEY } from '@/constants';
 
 function updateHTML() {
-  const currentLocalStorageTheme = localStorage.getItem(LOCAL_STORAGE_THEME_KEY)
-    ? JSON.parse(localStorage.getItem(LOCAL_STORAGE_THEME_KEY) || '')
-    : '';
+  const stored = localStorage.getItem(LOCAL_STORAGE_THEME_KEY)
+    ? JSON.parse(localStorage.getItem(LOCAL_STORAGE_THEME_KEY) || '"dark"')
+    : null;
 
-  const isLocalStorageDark = currentLocalStorageTheme === 'dark';
-  const missingLocalStorageTheme = !(LOCAL_STORAGE_THEME_KEY in localStorage);
-
-  const userPrefersDarkTheme = window.matchMedia(
-    '(prefers-color-scheme: dark)'
-  ).matches;
-
-  const useDark =
-    isLocalStorageDark || (missingLocalStorageTheme && userPrefersDarkTheme);
+  // Default to dark if nothing is stored yet
+  const useDark = stored === null ? true : stored === 'dark';
 
   document.documentElement.dataset.theme = useDark ? 'dark' : 'light';
 }
