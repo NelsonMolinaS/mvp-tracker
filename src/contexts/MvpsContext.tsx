@@ -31,6 +31,7 @@ interface MvpsContextData {
   removeMvpByMap: (mvpID: number, deathMap: string) => void;
   setEditingMvp: (mvp: IMvp) => void;
   closeEditMvpModal: () => void;
+  updateMvpPosition: (mvpId: number, deathMap: string, position: IMapMark) => void;
 }
 
 export const MvpsContext = createContext({} as MvpsContextData);
@@ -134,6 +135,19 @@ export function MvpProvider({ children }: MvpProviderProps) {
 
   const closeEditMvpModal = useCallback(() => setEditingMvp(undefined), []);
 
+  const updateMvpPosition = useCallback(
+    (mvpId: number, deathMap: string, position: IMapMark) => {
+      setActiveMvps((state) =>
+        state.map((m) =>
+          String(m.id) === String(mvpId) && m.deathMap === deathMap
+            ? { ...m, deathPosition: position }
+            : m
+        )
+      );
+    },
+    []
+  );
+
   // Auto-remove expired MVPs
   useEffect(() => {
     if (isLoading || activeMvps.length === 0) return;
@@ -211,6 +225,7 @@ export function MvpProvider({ children }: MvpProviderProps) {
         removeMvpByMap,
         setEditingMvp,
         closeEditMvpModal,
+        updateMvpPosition,
         isLoading,
       }}
     >

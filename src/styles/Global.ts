@@ -46,7 +46,7 @@ export const globals = css`
 
       --timers_passed: #d10000;
       --timers_normal: #421411;
-      --timers_respawning: #62831f;
+      --timers_respawning: #c47a00;
 
       --switch_bg: #ffa800;
       --switch_handle: #f6f8fa;
@@ -113,7 +113,7 @@ export const globals = css`
 
       --timers_passed: #ff4d4d;
       --timers_normal: #ffffff;
-      --timers_respawning: #76bc21;
+      --timers_respawning: #ffba00;
 
       --switch_bg: #f89200;
       --switch_handle: #000000;

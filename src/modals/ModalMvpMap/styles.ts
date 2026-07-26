@@ -32,3 +32,35 @@ export const Warning = styled.span`
   font-weight: bold;
   font-size: 1.4rem;
 `;
+
+export const TombToggleButton = styled.button<{ active: boolean }>`
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  padding: 8px 18px;
+  border-radius: 8px;
+  border: 2px solid ${({ active }) => (active ? '#ffa800' : 'rgba(255,255,255,0.15)')};
+  background: ${({ active }) =>
+    active
+      ? 'linear-gradient(135deg, #ffa800 0%, #c47300 100%)'
+      : 'rgba(255,255,255,0.07)'};
+  color: ${({ active }) => (active ? '#fff' : 'var(--modal_text)')};
+  font-weight: 700;
+  font-size: 1.4rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    border-color: #ffa800;
+    background: ${({ active }) =>
+      active
+        ? 'linear-gradient(135deg, #ffba00 0%, #d47f00 100%)'
+        : 'rgba(255, 168, 0, 0.12)'};
+    transform: translateY(-1px);
+  }
+
+  img {
+    filter: ${({ active }) => (active ? 'brightness(1.3)' : 'none')};
+  }
+`;

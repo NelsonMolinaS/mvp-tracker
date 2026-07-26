@@ -103,7 +103,11 @@ export function MvpCard({ mvp }: MvpCardProps) {
                 <RefreshCcw />
               </Control>
               <Control
-                onClick={() => removeMvpByMap(mvp.id, mvp.deathMap)}
+                onClick={() => {
+                  if (window.confirm(`¿Eliminar a ${mvp.name} del mapa ${mvp.deathMap}?`)) {
+                    removeMvpByMap(mvp.id, mvp.deathMap);
+                  }
+                }}
                 title={GetTranslateText('controls.remove')}
               >
                 <Trash2 />
@@ -121,18 +125,19 @@ export function MvpCard({ mvp }: MvpCardProps) {
             <KilledNow onClick={handleKilledNow}>
               <FormattedMessage id='killed_now' />
             </KilledNow>
+            {/* EditButton oculto — descomentar para reactivar
             <EditButton onClick={() => setEditingMvp(mvp)}>
               <FormattedMessage id='edit' />
               <TombIcon src={mvp_tomb} alt='tombstone' />
             </EditButton>
+            */}
           </Controls>
         )}
       </Container>
 
       {isActive && isMapModalOpen && (
         <ModalMvpMap
-          deathMap={mvp.deathMap}
-          deathPosition={mvp.deathPosition}
+          mvp={mvp}
           close={() => setIsMapModalOpen(false)}
         />
       )}
