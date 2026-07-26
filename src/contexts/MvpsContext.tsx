@@ -96,7 +96,7 @@ export function MvpProvider({ children }: MvpProviderProps) {
     const updatedMvp = { ...mvp, deathTime: new Date() };
     setActiveMvps((state) =>
       state.map((m) =>
-        String(m.id) === String(mvp.id) || m.deathMap === mvp.deathMap
+        String(m.id) === String(mvp.id) && m.deathMap === mvp.deathMap
           ? updatedMvp
           : m
       )
