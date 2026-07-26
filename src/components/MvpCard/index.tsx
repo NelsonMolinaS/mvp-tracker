@@ -125,12 +125,10 @@ export function MvpCard({ mvp }: MvpCardProps) {
             <KilledNow onClick={handleKilledNow}>
               <FormattedMessage id='killed_now' />
             </KilledNow>
-            {/* EditButton oculto — descomentar para reactivar
             <EditButton onClick={() => setEditingMvp(mvp)}>
               <FormattedMessage id='edit' />
               <TombIcon src={mvp_tomb} alt='tombstone' />
             </EditButton>
-            */}
           </Controls>
         )}
       </Container>
