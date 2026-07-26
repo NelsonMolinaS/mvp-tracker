@@ -43,17 +43,19 @@ export function MvpProvider({ children }: MvpProviderProps) {
   const [editingMvp, setEditingMvp] = useState<IMvp>();
   const [activeMvps, setActiveMvps] = useState<IMvp[]>([]);
   const [allMvps, setAllMvps] = useState<IMvp[]>([]);
-  // Track if we are the ones writing to avoid echo loops
-  // Must be a ref (not state) so the Firebase callback reads the current value
-  const isSavingRef = useRef(false);
+  // Ref to store latest activeMvps without triggering re-renders (used in save calls)
+  const activeMvpsRef = useRef<IMvp[]>([]);
 
-  // Subscribe to Firebase real-time updates
+  // Keep ref in sync with state
+  useEffect(() => {
+    activeMvpsRef.current = activeMvps;
+  }, [activeMvps]);
+
+  // Subscribe to Firebase real-time updates (read-only → never triggers a save)
   useEffect(() => {
     setIsLoading(true);
 
     const unsubscribe = subscribeToActiveMvps(server, async (rawMvps) => {
-      if (isSavingRef.current) return; // Skip echo from our own writes
-
       try {
         const originalServerData = await getServerData(server);
 
@@ -94,20 +96,22 @@ export function MvpProvider({ children }: MvpProviderProps) {
 
   const resetMvpTimer = useCallback((mvp: IMvp) => {
     const updatedMvp = { ...mvp, deathTime: new Date() };
-    setActiveMvps((state) =>
-      state.map((m) =>
+    setActiveMvps((state) => {
+      const next = state.map((m) =>
         String(m.id) === String(mvp.id) && m.deathMap === mvp.deathMap
           ? updatedMvp
           : m
-      )
-    );
-  }, []);
+      );
+      saveActiveMvpsToFirebase(next, server);
+      return next;
+    });
+  }, [server]);
 
   const removeMvpByMap = useCallback(
     (mvpID: number | string, deathMap: string) => {
       // Remove from Firebase immediately
       removeMvpFromFirebase(mvpID, deathMap, server);
-      // Optimistic local update
+      // Optimistic local update (no need to save again — removeMvpFromFirebase handles it)
       setActiveMvps((state) =>
         state.filter(
           (m) => !(String(m.id) === String(mvpID) && m.deathMap === deathMap)
@@ -123,29 +127,33 @@ export function MvpProvider({ children }: MvpProviderProps) {
       const filtered = s.filter(
         (m) => !(String(m.id) === String(mvp.id) && m.deathMap === mvp.deathMap)
       );
-      return [...filtered, killedMvp].sort((a: IMvp, b: IMvp) => {
+      const next = [...filtered, killedMvp].sort((a: IMvp, b: IMvp) => {
         const bothHaveDeathTime = a.deathTime && b.deathTime;
         if (!bothHaveDeathTime) return 0;
         return dayjs(a.deathTime)
           .add(getMvpRespawnTime(a), 'ms')
           .diff(dayjs(b.deathTime).add(getMvpRespawnTime(b), 'ms'));
       });
+      saveActiveMvpsToFirebase(next, server);
+      return next;
     });
-  }, []);
+  }, [server]);
 
   const closeEditMvpModal = useCallback(() => setEditingMvp(undefined), []);
 
   const updateMvpPosition = useCallback(
     (mvpId: number, deathMap: string, position: IMapMark) => {
-      setActiveMvps((state) =>
-        state.map((m) =>
+      setActiveMvps((state) => {
+        const next = state.map((m) =>
           String(m.id) === String(mvpId) && m.deathMap === deathMap
             ? { ...m, deathPosition: position }
             : m
-        )
-      );
+        );
+        saveActiveMvpsToFirebase(next, server);
+        return next;
+      });
     },
-    []
+    [server]
   );
 
   // Auto-remove expired MVPs
@@ -154,8 +162,8 @@ export function MvpProvider({ children }: MvpProviderProps) {
 
     const checkExpiration = () => {
       const now = dayjs();
-      setActiveMvps((prevActive) =>
-        prevActive.filter((mvp) => {
+      setActiveMvps((prevActive) => {
+        const next = prevActive.filter((mvp) => {
           const respawnTimeMs = getMvpRespawnTime(mvp);
           if (!respawnTimeMs || !mvp.deathTime) return true;
           const autoRemoveTime = dayjs(mvp.deathTime).add(
@@ -163,28 +171,19 @@ export function MvpProvider({ children }: MvpProviderProps) {
             'ms'
           );
           return now.isBefore(autoRemoveTime);
-        })
-      );
+        });
+        // Only save if something was actually removed
+        if (next.length !== prevActive.length) {
+          saveActiveMvpsToFirebase(next, server);
+        }
+        return next;
+      });
     };
 
     checkExpiration();
     const interval = setInterval(checkExpiration, 10000);
     return () => clearInterval(interval);
-  }, [isLoading, activeMvps.length]);
-
-  // Sync activeMvps changes to Firebase
-  useEffect(() => {
-    if (isLoading) return;
-
-    const sync = async () => {
-      isSavingRef.current = true;
-      await saveActiveMvpsToFirebase(activeMvps, server);
-      // Small delay so the Firebase listener doesn't echo back
-      setTimeout(() => { isSavingRef.current = false; }, 1500);
-    };
-
-    sync();
-  }, [isLoading, activeMvps, server]);
+  }, [isLoading, activeMvps.length, server]);
 
   // Update allMvps (available MVPs to kill)
   useEffect(() => {
