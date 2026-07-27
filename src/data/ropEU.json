@@ -971,7 +971,6 @@
       "health": 6500000,
       "baseExperience": 3000000,
       "jobExperience": 2000000
-    },
-    "noEdit": true
+    }
   }
 ]
