@@ -639,7 +639,7 @@
   {
     "id": 17851,
     "dbname": "ATROCE",
-    "name": "Atroce",
+    "name": "Atroce (ra_fild02)",
     "spawn": [
       {
         "mapname": "ra_fild02",
@@ -657,7 +657,7 @@
   {
     "id": 17852,
     "dbname": "ATROCE",
-    "name": "Atroce",
+    "name": "Atroce (ra_fild03)",
     "spawn": [
       {
         "mapname": "ra_fild03",
@@ -676,7 +676,7 @@
   {
     "id": 17853,
     "dbname": "ATROCE",
-    "name": "Atroce",
+    "name": "Atroce (ra_fild04)",
     "spawn": [
       {
         "mapname": "ra_fild04",
@@ -695,7 +695,7 @@
   {
     "id": 17854,
     "dbname": "ATROCE",
-    "name": "Atroce",
+    "name": "Atroce (ve_fild01)",
     "spawn": [
       {
         "mapname": "ve_fild01",
@@ -714,7 +714,7 @@
   {
     "id": 17855,
     "dbname": "ATROCE",
-    "name": "Atroce",
+    "name": "Atroce (ve_fild02)",
     "spawn": [
       {
         "mapname": "ve_fild02",
