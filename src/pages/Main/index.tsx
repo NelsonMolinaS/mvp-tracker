@@ -18,9 +18,12 @@ export function Main() {
   const [searchQuery, setSearchQuery] = useState<string>(
     sessionStorage.getItem('search') || ''
   );
-  const [currentSort, setCurrentSort] = useState<string>(
-    sessionStorage.getItem('sort') || 'id'
-  );
+  const [currentSort, setCurrentSort] = useState<string>(() => {
+    const saved = sessionStorage.getItem('sort');
+    // 'id' was the old default — migrate it to 'name'
+    if (!saved || saved === 'id') return 'name';
+    return saved;
+  });
   const [reverseSort, setReverseSort] = useState<boolean>(
     sessionStorage.getItem('reverse') === 'true'
   );

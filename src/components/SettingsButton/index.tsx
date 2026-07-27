@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { createPortal } from 'react-dom';
 import { Settings } from '@styled-icons/feather';
 import { ModalSettings } from '@/modals';
 import { Container } from './styles';
@@ -12,9 +13,13 @@ export function SettingsButton() {
         <Settings onClick={() => setIsSettingsModalOpen(true)} />
       </Container>
 
-      {isSettingsModalOpen && (
-        <ModalSettings onClose={() => setIsSettingsModalOpen(false)} />
-      )}
+      {isSettingsModalOpen &&
+        createPortal(
+          <ModalSettings onClose={() => setIsSettingsModalOpen(false)} />,
+          document.body
+        )
+      }
     </>
   );
 }
+

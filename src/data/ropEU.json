@@ -955,5 +955,23 @@
       "baseExperience": 1000000,
       "jobExperience": 800000
     }
+  },
+  {
+    "id": 1708,
+    "dbname": "THANATOS",
+    "name": "Thanatos",
+    "spawn": [
+      {
+        "mapname": "thana_boss",
+        "respawnTime": 7200000
+      }
+    ],
+    "stats": {
+      "level": 147,
+      "health": 6500000,
+      "baseExperience": 3000000,
+      "jobExperience": 2000000
+    },
+    "noEdit": true
   }
 ]

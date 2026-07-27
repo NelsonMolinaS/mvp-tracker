@@ -23,4 +23,5 @@ interface IMvp {
   deathTime?: Date;
   deathMap?: string;
   deathPosition?: IMapMark;
+  noEdit?: boolean;
 }

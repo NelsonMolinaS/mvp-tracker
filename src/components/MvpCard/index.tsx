@@ -125,10 +125,12 @@ export function MvpCard({ mvp }: MvpCardProps) {
             <KilledNow onClick={handleKilledNow}>
               <FormattedMessage id='killed_now' />
             </KilledNow>
-            <EditButton onClick={() => setEditingMvp(mvp)}>
-              <FormattedMessage id='edit' />
-              <TombIcon src={mvp_tomb} alt='tombstone' />
-            </EditButton>
+            {!mvp.noEdit && (
+              <EditButton onClick={() => setEditingMvp(mvp)}>
+                <FormattedMessage id='edit' />
+                <TombIcon src={mvp_tomb} alt='tombstone' />
+              </EditButton>
+            )}
           </Controls>
         )}
       </Container>

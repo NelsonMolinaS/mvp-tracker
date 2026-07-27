@@ -1,11 +1,15 @@
 import { styled } from '@linaria/react';
 
-export const Button = styled.button`
-  font-weight: 500;
+export const Link = styled.a`
+  font-weight: 600;
+  font-size: 14px;
   color: var(--header_text);
-  background: none;
+  text-decoration: none;
+  letter-spacing: 0.3px;
+  transition: all 0.2s ease;
 
   &:hover {
-    opacity: 0.8;
+    opacity: 0.75;
+    text-decoration: underline;
   }
 `;
