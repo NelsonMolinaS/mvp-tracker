@@ -26,7 +26,7 @@ interface MvpsContextData {
   allMvps: IMvp[];
   editingMvp: IMvp | undefined;
   isLoading: boolean;
-  resetMvpTimer: (mvp: IMvp) => void;
+  resetMvpTimer: (mvp: IMvp, time?: Date) => void;
   killMvp: (mvp: IMvp, time?: Date | null) => void;
   removeMvpByMap: (mvpID: number, deathMap: string) => void;
   setEditingMvp: (mvp: IMvp) => void;
@@ -94,33 +94,6 @@ export function MvpProvider({ children }: MvpProviderProps) {
     };
   }, [server]);
 
-  const resetMvpTimer = useCallback((mvp: IMvp) => {
-    const updatedMvp = { ...mvp, deathTime: new Date() };
-    setActiveMvps((state) => {
-      const next = state.map((m) =>
-        String(m.id) === String(mvp.id) && m.deathMap === mvp.deathMap
-          ? updatedMvp
-          : m
-      );
-      saveActiveMvpsToFirebase(next, server);
-      return next;
-    });
-  }, [server]);
-
-  const removeMvpByMap = useCallback(
-    (mvpID: number | string, deathMap: string) => {
-      // Remove from Firebase immediately
-      removeMvpFromFirebase(mvpID, deathMap, server);
-      // Optimistic local update (no need to save again — removeMvpFromFirebase handles it)
-      setActiveMvps((state) =>
-        state.filter(
-          (m) => !(String(m.id) === String(mvpID) && m.deathMap === deathMap)
-        )
-      );
-    },
-    [server]
-  );
-
   const killMvp = useCallback((mvp: IMvp, deathTime = new Date()) => {
     const killedMvp = { ...mvp, deathTime };
     setActiveMvps((s) => {
@@ -138,6 +111,27 @@ export function MvpProvider({ children }: MvpProviderProps) {
       return next;
     });
   }, [server]);
+
+  const resetMvpTimer = useCallback(
+    (mvp: IMvp, time: Date = new Date()) => {
+      killMvp(mvp, time);
+    },
+    [killMvp]
+  );
+
+  const removeMvpByMap = useCallback(
+    (mvpID: number | string, deathMap: string) => {
+      // Remove from Firebase immediately
+      removeMvpFromFirebase(mvpID, deathMap, server);
+      // Optimistic local update (no need to save again — removeMvpFromFirebase handles it)
+      setActiveMvps((state) =>
+        state.filter(
+          (m) => !(String(m.id) === String(mvpID) && m.deathMap === deathMap)
+        )
+      );
+    },
+    [server]
+  );
 
   const closeEditMvpModal = useCallback(() => setEditingMvp(undefined), []);
 

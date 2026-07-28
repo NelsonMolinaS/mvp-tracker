@@ -64,3 +64,44 @@ export const TombToggleButton = styled.button<{ active: boolean }>`
     filter: ${({ active }) => (active ? 'brightness(1.3)' : 'none')};
   }
 `;
+
+export const TimeSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+  padding: 0 2rem;
+`;
+
+export const TimeLabel = styled.span`
+  color: var(--modal_text);
+  font-size: 1.3rem;
+  font-weight: 600;
+  opacity: 0.8;
+`;
+
+export const TimeInput = styled.input`
+  width: 100%;
+  padding: 7px 10px;
+  border-radius: 8px;
+  border: 1px solid rgba(248, 146, 0, 0.35);
+  background: rgba(255, 255, 255, 0.05);
+  color: white;
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-align: center;
+  transition: border-color 0.2s;
+
+  &:focus {
+    outline: none;
+    border-color: rgba(248, 146, 0, 0.8);
+    background: rgba(248, 146, 0, 0.07);
+  }
+
+  &::-webkit-calendar-picker-indicator {
+    filter: invert(0.7);
+    cursor: pointer;
+  }
+`;
+

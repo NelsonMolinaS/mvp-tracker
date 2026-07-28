@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { FormattedMessage } from 'react-intl';
+import dayjs from 'dayjs';
 
 import { useClickOutside, useKey, useScrollBlock } from '@/hooks';
 import { useMvpsContext } from '@/contexts/MvpsContext';
@@ -9,7 +10,7 @@ import { Map } from '../../components/Map';
 import { NaviCommand } from '../../components/NaviCommand';
 
 import { ModalPrimaryButton } from '@/ui/ModalPrimaryButton';
-import { Modal, Name, Warning, TombToggleButton } from './styles';
+import { Modal, Name, Warning, TombToggleButton, TimeSection, TimeLabel, TimeInput } from './styles';
 
 import mvp_tomb from '@/assets/mob_tomb_front1.png';
 
@@ -22,13 +23,23 @@ export function ModalMvpMap({ mvp, close }: MvpMapModalProps) {
   useScrollBlock(true);
   useKey('Escape', close);
   const modalRef = useClickOutside(close);
-  const { updateMvpPosition } = useMvpsContext();
+  const { updateMvpPosition, resetMvpTimer } = useMvpsContext();
 
   const [placingTomb, setPlacingTomb] = useState(false);
+  const [optionalTime, setOptionalTime] = useState<string>('');
 
   function handleMapClick(coords: IMapMark) {
     updateMvpPosition(mvp.id, mvp.deathMap, coords);
     setPlacingTomb(false);
+  }
+
+  function handleClose() {
+    if (optionalTime) {
+      const [hours, minutes] = optionalTime.split(':').map(Number);
+      const newTime = dayjs().hour(hours).minute(minutes).second(0).toDate();
+      resetMvpTimer(mvp, newTime);
+    }
+    close();
   }
 
   return (
@@ -57,7 +68,17 @@ export function ModalMvpMap({ mvp, close }: MvpMapModalProps) {
           <FormattedMessage id='nav_command_warning' />
         </Warning>
 
-        <ModalPrimaryButton onClick={close}>
+        <TimeSection>
+          <TimeLabel>⏰ Hora de muerte (opcional)</TimeLabel>
+          <TimeInput
+            type='time'
+            value={optionalTime}
+            onChange={(e) => setOptionalTime(e.target.value)}
+            placeholder='--:--'
+          />
+        </TimeSection>
+
+        <ModalPrimaryButton onClick={handleClose}>
           <FormattedMessage id='close' />
         </ModalPrimaryButton>
       </Modal>
