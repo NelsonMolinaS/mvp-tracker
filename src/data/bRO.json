@@ -737,7 +737,8 @@
     "spawn": [
       {
         "mapname": "kh_dun02",
-        "respawnTime": 7200000
+        "respawnTime": 7200000,
+        "cooldown": 3600000
       }
     ],
     "stats": {
@@ -907,7 +908,8 @@
     "spawn": [
       {
         "mapname": "moc_fild22",
-        "respawnTime": 43200000
+        "respawnTime": 43200000,
+        "cooldown": 3600000
       }
     ],
     "stats": {
