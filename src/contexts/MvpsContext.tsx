@@ -10,7 +10,7 @@ import {
 import dayjs from 'dayjs';
 
 import { useSettings } from './SettingsContext';
-import { getMvpRespawnTime, getServerData } from '../utils';
+import { getMvpRespawnTime, getMvpCooldownTime, getServerData } from '../utils';
 import {
   saveActiveMvpsToFirebase,
   subscribeToActiveMvps,
@@ -160,8 +160,9 @@ export function MvpProvider({ children }: MvpProviderProps) {
         const next = prevActive.filter((mvp) => {
           const respawnTimeMs = getMvpRespawnTime(mvp);
           if (!respawnTimeMs || !mvp.deathTime) return true;
+          const cooldownMs = getMvpCooldownTime(mvp) || 0;
           const autoRemoveTime = dayjs(mvp.deathTime).add(
-            respawnTimeMs + 30 * 60 * 1000,
+            respawnTimeMs + cooldownMs + 30 * 60 * 1000,
             'ms'
           );
           return now.isBefore(autoRemoveTime);
