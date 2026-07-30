@@ -150,35 +150,7 @@ export function MvpProvider({ children }: MvpProviderProps) {
     [server]
   );
 
-  // Auto-remove expired MVPs
-  useEffect(() => {
-    if (isLoading || activeMvps.length === 0) return;
 
-    const checkExpiration = () => {
-      const now = dayjs();
-      setActiveMvps((prevActive) => {
-        const next = prevActive.filter((mvp) => {
-          const respawnTimeMs = getMvpRespawnTime(mvp);
-          if (!respawnTimeMs || !mvp.deathTime) return true;
-          const cooldownMs = getMvpCooldownTime(mvp) || 0;
-          const autoRemoveTime = dayjs(mvp.deathTime).add(
-            respawnTimeMs + cooldownMs + 30 * 60 * 1000,
-            'ms'
-          );
-          return now.isBefore(autoRemoveTime);
-        });
-        // Only save if something was actually removed
-        if (next.length !== prevActive.length) {
-          saveActiveMvpsToFirebase(next, server);
-        }
-        return next;
-      });
-    };
-
-    checkExpiration();
-    const interval = setInterval(checkExpiration, 10000);
-    return () => clearInterval(interval);
-  }, [isLoading, activeMvps.length, server]);
 
   // Update allMvps (available MVPs to kill)
   useEffect(() => {

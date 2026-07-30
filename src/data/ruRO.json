@@ -354,7 +354,8 @@
     "spawn": [
       {
         "mapname": "ayo_dun02",
-        "respawnTime": 25200000
+        "respawnTime": 25200000,
+        "cooldown": 600000
       }
     ],
     "stats": {
