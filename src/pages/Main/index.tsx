@@ -11,7 +11,15 @@ import { ModalEditMvp } from '@/modals';
 import { sortBy } from '@/utils/sort';
 import { getMvpRespawnTime } from '@/utils';
 
-import { Container, Section, SectionTitle, MvpsContainer } from './styles';
+import {
+  Container,
+  Section,
+  SectionTitle,
+  MvpsContainer,
+  StatusLegendBar,
+  StatusLegendItem,
+  StatusDot,
+} from './styles';
 
 export function Main() {
   const { activeMvps, allMvps, editingMvp, isLoading } = useMvpsContext();
@@ -60,6 +68,38 @@ export function Main() {
             <SectionTitle>
               <FormattedMessage id='active' />
             </SectionTitle>
+
+            <StatusLegendBar>
+              <StatusLegendItem>
+                <StatusDot type='normal' />
+                <span>
+                  <strong>
+                    <FormattedMessage id='respawn_in' />:
+                  </strong>{' '}
+                  <FormattedMessage id='legend_respawn_in' />
+                </span>
+              </StatusLegendItem>
+
+              <StatusLegendItem>
+                <StatusDot type='respawning' />
+                <span>
+                  <strong>
+                    <FormattedMessage id='respawning' />:
+                  </strong>{' '}
+                  <FormattedMessage id='legend_respawning' />
+                </span>
+              </StatusLegendItem>
+
+              <StatusLegendItem>
+                <StatusDot type='passed' />
+                <span>
+                  <strong>
+                    <FormattedMessage id='already_respawned' />:
+                  </strong>{' '}
+                  <FormattedMessage id='legend_already_respawned' />
+                </span>
+              </StatusLegendItem>
+            </StatusLegendBar>
 
             <MvpsContainer>
               {sortedActiveMvps.map((mvp: IMvp) => (

@@ -7,7 +7,8 @@
     "spawn": [
       {
         "mapname": "treasure02",
-        "respawnTime": 1980000
+        "respawnTime": 1980000,
+        "cooldown": 600000
       }
     ],
     "stats": {
@@ -25,7 +26,8 @@
     "spawn": [
       {
         "mapname": "prt_maze03",
-        "respawnTime": 6780000
+        "respawnTime": 6780000,
+        "cooldown": 600000
       }
     ],
     "stats": {
@@ -43,7 +45,8 @@
     "spawn": [
       {
         "mapname": "pay_fild04",
-        "respawnTime": 3600000
+        "respawnTime": 3600000,
+        "cooldown": 600000
       }
     ],
     "stats": {
@@ -61,7 +64,8 @@
     "spawn": [
       {
         "mapname": "yuno_fild03",
-        "respawnTime": 3600000
+        "respawnTime": 3600000,
+        "cooldown": 600000
       }
     ],
     "stats": {
@@ -79,7 +83,8 @@
     "spawn": [
       {
         "mapname": "xmas_dun01",
-        "respawnTime": 3600000
+        "respawnTime": 3600000,
+        "cooldown": 600000
       }
     ],
     "stats": {
@@ -97,7 +102,8 @@
     "spawn": [
       {
         "mapname": "pay_fild04",
-        "respawnTime": 3600000
+        "respawnTime": 3600000,
+        "cooldown": 600000
       }
     ],
     "stats": {
@@ -115,7 +121,8 @@
     "spawn": [
       {
         "mapname": "yuno_fild03",
-        "respawnTime": 3600000
+        "respawnTime": 3600000,
+        "cooldown": 600000
       }
     ],
     "stats": {
@@ -133,7 +140,8 @@
     "spawn": [
       {
         "mapname": "pay_fild04",
-        "respawnTime": 7200000
+        "respawnTime": 7200000,
+        "cooldown": 600000
       }
     ],
     "stats": {
@@ -150,7 +158,8 @@
     "spawn": [
       {
         "mapname": "gef_fild14",
-        "respawnTime": 3600000
+        "respawnTime": 3600000,
+        "cooldown": 600000
       }
     ],
     "stats": {
@@ -167,7 +176,8 @@
     "spawn": [
       {
         "mapname": "anthell02",
-        "respawnTime": 7200000
+        "respawnTime": 7200000,
+        "cooldown": 600000
       }
     ],
     "stats": {
@@ -184,7 +194,8 @@
     "spawn": [
       {
         "mapname": "gef_fild10",
-        "respawnTime": 7200000
+        "respawnTime": 7200000,
+        "cooldown": 600000
       }
     ],
     "stats": {
@@ -201,7 +212,8 @@
     "spawn": [
       {
         "mapname": "prt_sewb4",
-        "respawnTime": 3600000
+        "respawnTime": 3600000,
+        "cooldown": 600000
       }
     ],
     "stats": {
@@ -218,7 +230,8 @@
     "spawn": [
       {
         "mapname": "pay_fild11",
-        "respawnTime": 7200000
+        "respawnTime": 7200000,
+        "cooldown": 600000
       }
     ],
     "stats": {
@@ -235,7 +248,8 @@
     "spawn": [
       {
         "mapname": "moc_pryd04",
-        "respawnTime": 3600000
+        "respawnTime": 3600000,
+        "cooldown": 600000
       }
     ],
     "stats": {
@@ -252,7 +266,8 @@
     "spawn": [
       {
         "mapname": "moc_pryd06",
-        "respawnTime": 3600000
+        "respawnTime": 3600000,
+        "cooldown": 600000
       }
     ],
     "stats": {
@@ -269,7 +284,8 @@
     "spawn": [
       {
         "mapname": "moc_fild17",
-        "respawnTime": 7200000
+        "respawnTime": 7200000,
+        "cooldown": 600000
       }
     ],
     "stats": {
@@ -286,7 +302,8 @@
     "spawn": [
       {
         "mapname": "gef_dun01",
-        "respawnTime": 3600000
+        "respawnTime": 3600000,
+        "cooldown": 600000
       }
     ],
     "stats": {
@@ -303,7 +320,8 @@
     "spawn": [
       {
         "mapname": "gef_dun02",
-        "respawnTime": 7200000
+        "respawnTime": 7200000,
+        "cooldown": 600000
       }
     ],
     "stats": {
@@ -320,7 +338,8 @@
     "spawn": [
       {
         "mapname": "mjolnir_04",
-        "respawnTime": 7200000
+        "respawnTime": 7200000,
+        "cooldown": 600000
       }
     ],
     "stats": {
@@ -337,7 +356,8 @@
     "spawn": [
       {
         "mapname": "pay_dun04",
-        "respawnTime": 3600000
+        "respawnTime": 3600000,
+        "cooldown": 600000
       }
     ],
     "stats": {
@@ -372,7 +392,8 @@
     "spawn": [
       {
         "mapname": "prt_maze03",
-        "respawnTime": 7200000
+        "respawnTime": 7200000,
+        "cooldown": 600000
       }
     ],
     "stats": {
@@ -389,7 +410,8 @@
     "spawn": [
       {
         "mapname": "in_sphinx5",
-        "respawnTime": 3600000
+        "respawnTime": 3600000,
+        "cooldown": 600000
       }
     ],
     "stats": {
@@ -406,7 +428,8 @@
     "spawn": [
       {
         "mapname": "treasure02",
-        "respawnTime": 7200000
+        "respawnTime": 7200000,
+        "cooldown": 600000
       }
     ],
     "stats": {
@@ -423,7 +446,8 @@
     "spawn": [
       {
         "mapname": "xmas_dun02",
-        "respawnTime": 3600000
+        "respawnTime": 3600000,
+        "cooldown": 600000
       }
     ],
     "stats": {
@@ -440,7 +464,8 @@
     "spawn": [
       {
         "mapname": "bra_dun02",
-        "respawnTime": 7200000
+        "respawnTime": 7200000,
+        "cooldown": 600000
       }
     ],
     "stats": {
@@ -474,7 +499,8 @@
     "spawn": [
       {
         "mapname": "niflheim",
-        "respawnTime": 7980000
+        "respawnTime": 7980000,
+        "cooldown": 600000
       }
     ],
     "stats": {
@@ -491,7 +517,8 @@
     "spawn": [
       {
         "mapname": "gl_chyard",
-        "respawnTime": 3600000
+        "respawnTime": 3600000,
+        "cooldown": 600000
       }
     ],
     "stats": {
@@ -508,7 +535,8 @@
     "spawn": [
       {
         "mapname": "lou_dun03",
-        "respawnTime": 7000000
+        "respawnTime": 7000000,
+        "cooldown": 600000
       }
     ],
     "stats": {
@@ -525,7 +553,8 @@
     "spawn": [
       {
         "mapname": "mosk_dun03",
-        "respawnTime": 7200000
+        "respawnTime": 7200000,
+        "cooldown": 600000
       }
     ],
     "stats": {
@@ -542,7 +571,8 @@
     "spawn": [
       {
         "mapname": "xmas_fild01",
-        "respawnTime": 7200000
+        "respawnTime": 7200000,
+        "cooldown": 600000
       }
     ],
     "stats": {
@@ -559,7 +589,8 @@
     "spawn": [
       {
         "mapname": "ama_dun03",
-        "respawnTime": 5460000
+        "respawnTime": 5460000,
+        "cooldown": 600000
       }
     ],
     "stats": {
@@ -576,7 +607,8 @@
     "spawn": [
       {
         "mapname": "ein_dun02",
-        "respawnTime": 7500000
+        "respawnTime": 7500000,
+        "cooldown": 600000
       }
     ],
     "stats": {
@@ -593,7 +625,8 @@
     "spawn": [
       {
         "mapname": "gon_dun03",
-        "respawnTime": 5650000
+        "respawnTime": 5650000,
+        "cooldown": 600000
       }
     ],
     "stats": {
@@ -610,7 +643,8 @@
     "spawn": [
       {
         "mapname": "tur_dun04",
-        "respawnTime": 3600000
+        "respawnTime": 3600000,
+        "cooldown": 600000
       }
     ],
     "stats": {
@@ -627,7 +661,8 @@
     "spawn": [
       {
         "mapname": "beach_dun",
-        "respawnTime": 18000000
+        "respawnTime": 18000000,
+        "cooldown": 600000
       }
     ],
     "stats": {
@@ -644,7 +679,8 @@
     "spawn": [
       {
         "mapname": "ra_fild02",
-        "respawnTime": 14400000
+        "respawnTime": 14400000,
+        "cooldown": 600000
       }
     ],
     "stats": {
@@ -738,7 +774,8 @@
     "spawn": [
       {
         "mapname": "iz_dun05",
-        "respawnTime": 7200000
+        "respawnTime": 7200000,
+        "cooldown": 600000
       }
     ],
     "stats": {
@@ -773,7 +810,8 @@
     "spawn": [
       {
         "mapname": "jupe_core",
-        "respawnTime": 7200000
+        "respawnTime": 7200000,
+        "cooldown": 600000
       }
     ],
     "stats": {
@@ -790,7 +828,8 @@
     "spawn": [
       {
         "mapname": "abyss_03",
-        "respawnTime": 10800000
+        "respawnTime": 10800000,
+        "cooldown": 600000
       }
     ],
     "stats": {
@@ -807,7 +846,8 @@
     "spawn": [
       {
         "mapname": "abbey02",
-        "respawnTime": 7200000
+        "respawnTime": 7200000,
+        "cooldown": 600000
       }
     ],
     "stats": {
@@ -824,7 +864,8 @@
     "spawn": [
       {
         "mapname": "ra_san05",
-        "respawnTime": 18000000
+        "respawnTime": 18000000,
+        "cooldown": 600000
       }
     ],
     "stats": {
@@ -841,7 +882,8 @@
     "spawn": [
       {
         "mapname": "dic_dun02",
-        "respawnTime": 7200000
+        "respawnTime": 7200000,
+        "cooldown": 600000
       }
     ],
     "stats": {
@@ -858,7 +900,8 @@
     "spawn": [
       {
         "mapname": "lhz_dun02",
-        "respawnTime": 7200000
+        "respawnTime": 7200000,
+        "cooldown": 600000
       }
     ],
     "stats": {
@@ -875,7 +918,8 @@
     "spawn": [
       {
         "mapname": "odin_tem03",
-        "respawnTime": 28800000
+        "respawnTime": 28800000,
+        "cooldown": 600000
       }
     ],
     "stats": {
@@ -892,7 +936,8 @@
     "spawn": [
       {
         "mapname": "thor_v03",
-        "respawnTime": 39600000
+        "respawnTime": 39600000,
+        "cooldown": 600000
       }
     ],
     "stats": {
@@ -909,7 +954,8 @@
     "spawn": [
       {
         "mapname": "abbey03",
-        "respawnTime": 43200000
+        "respawnTime": 43200000,
+        "cooldown": 600000
       }
     ],
     "stats": {
@@ -1000,7 +1046,8 @@
     "spawn": [
       {
         "mapname": "thana_boss",
-        "respawnTime": 7200000
+        "respawnTime": 7200000,
+        "cooldown": 600000
       }
     ],
     "stats": {

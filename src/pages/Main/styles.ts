@@ -59,3 +59,63 @@ export const MvpsContainer = styled.div`
     grid-template-columns: repeat(1, 1fr);
   }
 `;
+
+export const StatusLegendBar = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 1.8rem;
+  padding: 0.8rem 2rem;
+  border-radius: 16px;
+  background: rgba(26, 26, 33, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+  margin-top: -2px;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 0.8rem;
+    padding: 1rem 1.4rem;
+  }
+`;
+
+export const StatusLegendItem = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  font-size: 1.02rem;
+  color: var(--text);
+
+  span {
+    opacity: 0.95;
+  }
+
+  strong {
+    font-weight: 700;
+  }
+`;
+
+export const StatusDot = styled.span<{ type: 'normal' | 'respawning' | 'passed' }>`
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  display: inline-block;
+  flex-shrink: 0;
+  background-color: ${({ type }) =>
+    type === 'respawning'
+      ? 'var(--timers_respawning)'
+      : type === 'passed'
+      ? 'var(--timers_passed)'
+      : 'var(--timers_normal)'};
+  box-shadow: 0 0 8px
+    ${({ type }) =>
+      type === 'respawning'
+        ? 'rgba(0, 230, 118, 0.6)'
+        : type === 'passed'
+        ? 'rgba(255, 77, 77, 0.6)'
+        : 'rgba(255, 255, 255, 0.4)'};
+`;
+
+
