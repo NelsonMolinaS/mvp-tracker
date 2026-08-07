@@ -47,13 +47,13 @@ export function MvpCardCountdown({
 }: MvpCardCountdownProps) {
   const { duration } = useCountdown(nextRespawn);
 
-  const durationWithRespawnDelay = duration.add(
-    RESPAWN_TIMER_SOON_THRESHOLD_MS,
-    'ms'
-  );
+  const windowMs =
+    cooldownMs !== undefined ? cooldownMs : RESPAWN_TIMER_SOON_THRESHOLD_MS;
+
+  const durationWithRespawnDelay = duration.add(windowMs, 'ms');
   const durationAsMs = durationWithRespawnDelay.asMilliseconds();
   const respawningSoon =
-    durationAsMs >= 0 && durationAsMs <= RESPAWN_TIMER_SOON_THRESHOLD_MS;
+    windowMs > 0 && durationAsMs >= 0 && durationAsMs <= windowMs;
   const missedRespawn = durationAsMs < 0;
 
   const formattedTimeString = getTimeString(
@@ -65,8 +65,8 @@ export function MvpCardCountdown({
   );
 
   const shouldTriggerNotification =
-    Math.trunc(durationWithRespawnDelay.asSeconds()) ===
-    RESPAWN_TIMER_SOON_THRESHOLD_MS / 1000;
+    windowMs > 0 &&
+    Math.trunc(durationWithRespawnDelay.asSeconds()) === windowMs / 1000;
 
   if (onTriggerNotification && shouldTriggerNotification) {
     onTriggerNotification();

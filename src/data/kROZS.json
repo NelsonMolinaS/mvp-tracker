@@ -8,7 +8,7 @@
       {
         "mapname": "treasure02",
         "respawnTime": 1980000,
-        "cooldown": 600000
+        "cooldown": 0
       }
     ],
     "stats": {
