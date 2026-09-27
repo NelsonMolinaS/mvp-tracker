@@ -8,7 +8,7 @@ interface AuthContextData {
 
 const AuthContext = createContext({} as AuthContextData);
 
-const AUTH_KEY = 'continental_auth_session';
+const AUTH_KEY = 'continental_auth_session_v2';
 
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(() => {
@@ -17,7 +17,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const login = (u: string, p: string) => {
     const validUsername = u.trim().toLowerCase() === 'continental';
-    const validPassword = p === 'conti68*';
+    const validPassword = p === 'artetracker';
 
     if (validUsername && validPassword) {
       setIsAuthenticated(true);
